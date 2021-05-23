@@ -1,5 +1,40 @@
-var timesArray = ["9-am", "10-am", "11-am",
-    "12-pm", "1-pm", "2-pm", "3-pm", "4-pm", "5-pm"]
+var timesArray = [
+    {
+        hourId: "#9-am",
+        content: ""
+    },
+     {
+        hourId: "#10-am",
+        content: ""
+    }, 
+    {
+        hourId: "#11-am",
+        content: ""
+    },
+    {
+        hourId: "#12-pm",
+        content: ""
+    }, 
+    {
+        hourId: "#1-pm",
+        content: ""
+    }, 
+    {
+        hourId: "#2-pm",
+        content: ""
+    }, 
+    {
+        hourId: "#3-pm",
+        content: ""
+    }, 
+    {
+        hourId: "#4-pm",
+        content: ""
+    }, 
+    {
+        hourId: "#5-pm",
+        content: ""
+    }];
 
 var updateTime = function() {
     $("#currentDay").text(moment().format("dddd, MMMM Do"));
@@ -9,9 +44,15 @@ var updateTime = function() {
 // Click to save text in corresponding text area
 $(".fa-lock").on("click", function() {
     var textId = $(this).attr("id").replace("btn-", "#");
-    console.log(textId);
-    console.log($(textId).val());
-    console.log("save");
+
+    // Iterate through array of time blocks to find the relevant time block
+    for (var i = 0; i < timesArray.length; i++) {
+        if (timesArray[i].hourId === textId) {
+            timesArray[i].content = $(textId).val();
+        }
+    }
+
+    console.log(timesArray);
 });
 
 updateTime();
