@@ -36,6 +36,20 @@ var timesArray = [
         content: ""
     }];
 
+var saveArray = function() {
+    localStorage.setItem("savedArray", JSON.stringify(timesArray));
+}
+
+var loadArray = function() {
+    var tempTimesArray = localStorage.getItem("savedArray");
+    if (tempTimesArray) {
+        timesArray = JSON.parse(tempTimesArray);
+        $("textarea").each(function(index) {
+            $(this).text(timesArray[index].content);
+        });
+    }
+}
+
 var updateTime = function() {
     $("#currentDay").text(moment().format("dddd, MMMM Do"));
     console.log(moment());
@@ -52,8 +66,10 @@ $(".fa-lock").on("click", function() {
         }
     }
 
+    saveArray();
     console.log(timesArray);
 });
 
+loadArray();
 updateTime();
 setInterval(updateTime, 1000 * 60);
