@@ -52,22 +52,29 @@ var loadArray = function() {
 
 var updateTime = function() {
     $("#currentDay").text(moment().format("dddd, MMMM Do"));
-    console.log(moment());
+    var currentHour = moment().format("H");
+    $("textarea").each(function(index) {
+        $(this).addClass("future");
+        if ((9 + index) === parseInt(currentHour)) {
+            $(this).removeClass("future past").addClass("present");
+        } else if ((9 + index) < currentHour) {
+            $(this).removeClass("future present").addClass("past");
+        }
+    })
 }
 
 // Click to save text in corresponding text area
 $(".fa-lock").on("click", function() {
     var textId = $(this).attr("id").replace("btn-", "#");
 
-    // Iterate through array of time blocks to find the relevant time block
+    // Iterate through array of time blocks to find and set the relevant time block
     for (var i = 0; i < timesArray.length; i++) {
         if (timesArray[i].hourId === textId) {
             timesArray[i].content = $(textId).val();
         }
     }
-
+    
     saveArray();
-    console.log(timesArray);
 });
 
 loadArray();
