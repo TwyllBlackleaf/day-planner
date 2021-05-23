@@ -12,6 +12,8 @@ A day planner for a standard work day
 - Displays the current date at the top of the page
 - Highlights the current hour in red, the past in grey, and the future in green
 - Saves tasks to, and loads from, local storage
+- Each hour slot has its own dedicated save button
+- Media-responsive sizing of columns
 
 ## Technologies Used
 
