@@ -51,7 +51,10 @@ var loadArray = function() {
 }
 
 var updateTime = function() {
+    // Set the date display in the header
     $("#currentDay").text(moment().format("dddd, MMMM Do"));
+
+    // Set the colors for the textareas according to the current time
     var currentHour = moment().format("H");
     $("textarea").each(function(index) {
         $(this).addClass("future");
@@ -63,7 +66,7 @@ var updateTime = function() {
     })
 }
 
-// Click to save text in corresponding text area
+// Click to save text in corresponding textarea
 $(".fa-lock").on("click", function() {
     var textId = $(this).attr("id").replace("btn-", "#");
 
